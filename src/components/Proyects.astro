@@ -1,0 +1,67 @@
+---
+import MongoDBIcon from "../icons/MongoDB.astro";
+import ExpressIcon from "../icons/ExpressJs.astro";
+import ReactJSIcon from "../icons/ReactJs.astro";
+import NodeJsIcon from "../icons/NodeJs.astro";
+
+const TAGS = {
+  MONGODB: {
+    name: "MongoDB",
+    class: "bg-black text-[#3FA037]",
+    icon: MongoDBIcon,
+  },
+  EXPRESS: {
+    name: "Express.Js",
+    class: "bg-black text-[#fff]",
+    icon: ExpressIcon,
+  },
+  REACTJS: {
+    name: "React.Js",
+    class: "bg-black text-[#43c3ec]",
+    icon: ReactJSIcon,
+  },
+  NODE: {
+    name: "Node.Js",
+    class: "bg-black text-[#3FA037]",
+    icon: NodeJsIcon,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Dan D Repairs - Todo App",
+    description:
+      "Created from scratch with the MERN stack. It's Todos control web app for employee and employer",
+    link: "https://mern-stack-frontend-sigma.vercel.app/",
+    github: "https://github.com/0s1n/mernStack/tree/master/frontend",
+    image: "/projects/Dan-D-Repairs.webp",
+    tags: [TAGS.MONGODB, TAGS.EXPRESS, TAGS.REACTJS, TAGS.NODE],
+  },
+];
+---
+
+{
+  PROJECTS.map(({ title, description, tags, image, github, link }) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-x-2 flex-row mb-2">
+        {tags.map((tag) => (
+          <li>
+            <span
+              class={`flex gap-x-2 rounded-full text-sm ${tag.class} py-1 px-2`}
+            >
+              <tag.icon class="size-4" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <img
+        class="rounded shadow-2xl shadow-white/10"
+        src={image}
+        alt={`Captura de pantalla del proyecto ${title}`}
+      />
+    </article>
+  ))
+}
